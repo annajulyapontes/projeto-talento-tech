@@ -1,79 +1,58 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="theme-color" content="#4CAF50" />
   <title>Armazém da Sra. Lourdes</title>
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
-  <link rel="manifest" href="manifest.json">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" />
+  <link rel="stylesheet" href="style.css" />
+  <link rel="manifest" href="manifest.json" />
+  <link rel="icon" href="icon.jpg">
+  <script>
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', () => {
+        navigator.serviceWorker.register('serviceWorker.js');
+      });
+    }
+  </script>
 </head>
 <body class="bg-light">
-  <div class="container py-4">
-    <h1 class="text-center mb-4">Armazém da Sra. Lourdes</h1>
-
-    <!-- Catálogo de Produtos -->
-    <div id="produtos" class="row"></div>
-
-    <!-- Modal Pedido WhatsApp -->
-    <div class="modal fade" id="pedidoModal" tabindex="-1" aria-labelledby="pedidoLabel" aria-hidden="true">
-      <div class="modal-dialog">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title" id="pedidoLabel">Finalizar Pedido</h5>
-            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fechar"></button>
-          </div>
-          <div class="modal-body">
-            <input type="text" class="form-control mb-3" id="nomeCliente" placeholder="Seu nome">
-            <textarea class="form-control" id="resumoPedido" rows="4" readonly></textarea>
-          </div>
-          <div class="modal-footer">
-            <a href="#" id="btnWhatsapp" target="_blank" class="btn btn-success">Enviar pelo WhatsApp</a>
-          </div>
-        </div>
-      </div>
+  <div class="bg-white text-center py-4 border-bottom w-100 m-0 p-0">
+    <div class="logo-container mb-2">
+      <img src="logo.png" alt="Logo Sra. Lourdes" />
     </div>
-
+    <h2 class="mb-0 titulo-logo">Sra. Lourdes</h2>
+    <p class="text-muted">Produtos Artesanais e Hortifrúti - Loanda/PR</p>
   </div>
 
-  <script>
-    const produtos = [
-      { nome: 'Geleia de Morango', preco: 12.00 },
-      { nome: 'Tomate Orgânico (kg)', preco: 6.50 },
-      { nome: 'Bolo de Milho', preco: 15.00 }
-    ];
+  <div class="container text-center categoria-btns py-3">
+    <button class="btn btn-outline-success" onclick="rolarPara('frutas')">Frutas</button>
+    <button class="btn btn-outline-success" onclick="rolarPara('verduras')">Verduras / Legumes</button>
+    <button class="btn btn-outline-success" onclick="rolarPara('artesanais')">Produtos Artesanais</button>
+  </div>
 
-    const container = document.getElementById('produtos');
-    produtos.forEach((p, index) => {
-      container.innerHTML += `
-        <div class="col-md-4 mb-3">
-          <div class="card h-100">
-            <div class="card-body">
-              <h5 class="card-title">${p.nome}</h5>
-              <p class="card-text">R$ ${p.preco.toFixed(2)}</p>
-              <button class="btn btn-primary" onclick="adicionarPedido(${index})">Adicionar</button>
-            </div>
-          </div>
-        </div>`;
-    });
+  <div class="container">
+    <button class="btn btn-dark mb-4" onclick="alternarCarrinho()">🛒 Ver Carrinho</button>
+    <h3>Frutas</h3>
+    <div class="row row-cols-1 row-cols-md-3 g-3 mb-4" id="frutas"></div>
+    
+    <h3>Verduras / Legumes</h3>
+    <div class="row row-cols-1 row-cols-md-3 g-3 mb-4" id="verduras"></div>
+    
+    <h3>Produtos Artesanais</h3>
+    <div class="row row-cols-1 row-cols-md-3 g-3 mb-4" id="artesanais"></div>
+    
+    <div id="painelCarrinho">
+      <button class="btn btn-sm btn-danger mb-3" onclick="alternarCarrinho()">Fechar</button>
+      <h5>🛒 Carrinho de Compras</h5>
+      <div id="carrinho" class="mb-3"></div>
+      <button class="btn btn-success btn-sm me-2" onclick="finalizarCompraSite()">Finalizar Compra no Site</button>
+      <a id="btnWhatsapp" class="btn btn-primary btn-sm" target="_blank">Finalizar pelo WhatsApp</a>
+    </div>
+  </div>
 
-    let carrinho = [];
-    function adicionarPedido(index) {
-      carrinho.push(produtos[index].nome);
-      const resumo = carrinho.map((item, i) => `${i + 1}. ${item}`).join('\n');
-      document.getElementById('resumoPedido').value = resumo;
-      document.getElementById('btnWhatsapp').href = '#';
-      new bootstrap.Modal(document.getElementById('pedidoModal')).show();
-    }
-
-    document.getElementById('nomeCliente').addEventListener('input', () => {
-      const nome = document.getElementById('nomeCliente').value;
-      const pedido = document.getElementById('resumoPedido').value;
-      const mensagem = `Olá, meu nome é ${nome}. Gostaria de pedir:\n${pedido}`;
-      document.getElementById('btnWhatsapp').href = `https://wa.me/5599999999999?text=${encodeURIComponent(mensagem)}`;
-    });
-  </script>
-
+  <script src="script.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
