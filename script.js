@@ -26,29 +26,42 @@ const produtos = [
   { nome: 'Repolho', preco: 3.98, categoria: 'verduras', imagem: 'img/repolho.jpg', unidade: 'kg' },
   { nome: 'Batata', preco: 7.98, categoria: 'verduras', imagem: 'img/batata.jpg', unidade: 'kg' },
   { nome: 'Cenoura', preco: 5.98, categoria: 'verduras', imagem: 'img/cenoura.jpg', unidade: 'kg' },
+  { nome: 'Pão', preco: 15, categoria: 'artesanais', imagem: 'img/pão.jpg', unidade: 'un' },
 
-  { nome: 'Pão', preco: 4.00, categoria: 'artesanais', imagem: '', unidade: 'un' },
-  { nome: 'Doce de leite', preco: 10.00, categoria: 'artesanais', imagem: '', unidade: 'un' },
-  { nome: 'Maracujá', preco: 5.98, categoria: 'frutas', imagem: 'img/maracuja.jpg', unidade: 'kg' },
+  { nome: 'Queijo', preco: 30, categoria: 'artesanais', imagem: 'img/queijo.jpg', unidade: 'un' },
+
+  { nome: 'Bolo de Chocolate', preco: 35, categoria: 'artesanais', imagem: 'img/Bolo de chocolate.jpg', unidade: 'un' },
+  { nome: 'Empadão de Frango', preco: 35, categoria: 'artesanais', imagem: 'img/empadão de frango.jpg', unidade: 'un' },
+  { nome: 'Torta de Maracujá', preco: 35, categoria: 'artesanais', imagem: 'img/torta de maracujá.jpg', unidade: 'un' },
+  { nome: 'Doce de Leite', preco: 10.00, categoria: 'artesanais', imagem: 'img/doce de leite.jpg', unidade: 'un' },
+  { nome: 'Maracujá', preco: 11.98, categoria: 'frutas', imagem: 'img/maracuja.jpg', unidade: 'kg' },
+  
   { nome: 'Acerola', preco: 5.98, categoria: 'frutas', imagem: 'img/acerola.jpg', unidade: 'kg' },
+
   { nome: 'Bolo Red Velvet', preco: 35, categoria: 'artesanais', imagem: 'img/bolo red velvet.jpg', unidade: 'un' },
   { nome: 'Bolo de Cenoura com cobertura de chocolate', preco: 35, categoria: 'artesanais', imagem: 'img/bolo de cenoura com cobertura de chocolate.jpg', unidade: 'un' },
   { nome: 'Bolo de Limão', preco: 35, categoria: 'artesanais', imagem: 'img/bolo de limão.jpg', unidade: 'un' },
-  { nome: 'Bolo', preco: 35, categoria: 'artesanais', imagem: 'img/bolo.jpg', unidade: 'un' },
+  { nome: 'Bolo de Laranja com Coco', preco: 35, categoria: 'artesanais', imagem: 'img/bolo.jpg', unidade: 'un' },
+
   { nome: 'Brigadeiro Cremoso', preco: 5.98, categoria: 'artesanais', imagem: 'img/brigadeiro cremoso.jpg', unidade: 'un' },
   { nome: 'Pé de Moça Cremoso', preco: 5.98, categoria: 'artesanais', imagem: 'img/pé de moça cremoso.jpg', unidade: 'un' },
+
   { nome: 'Doce de Abóbora', preco: 5.98, categoria: 'artesanais', imagem: 'img/doce de abobora.jpg', unidade: '200g' },
+
   { nome: 'Uva', preco: 5.98, categoria: 'frutas', imagem: 'img/uva.jpg', unidade: 'kg' },
   { nome: 'Morango', preco: 5.98, categoria: 'frutas', imagem: 'img/morango.jpg', unidade: 'kg' },
   { nome: 'Pera', preco: 5.98, categoria: 'frutas', imagem: 'img/pera.jpg', unidade: 'kg' },
   { nome: 'Quiabo', preco: 5.98, categoria: 'verduras', imagem: 'img/quiabo.jpg', unidade: 'kg' },
-  { nome: 'Melancia Inteira', preco: 5.98, categoria: 'frutas', imagem: 'img/melancia inteira.jpg', unidade: 'un' },
-  { nome: '1/4 da Melancia', preco: 5.98, categoria: 'frutas', imagem: 'img/melancia 1 parte.jpg', unidade: 'un' },
+
+  { nome: 'Melancia Inteira', preco: 2.98, categoria: 'frutas', imagem: 'img/melancia inteira.jpg', unidade: 'kg' },
+  { nome: '1/4 da Melancia', preco: 2.98, categoria: 'frutas', imagem: 'img/melancia 1 parte.jpg', unidade: 'kg' },
+
   { nome: 'Berinjela', preco: 4.00, categoria: 'verduras', imagem: 'img/berinjela.jpg', unidade: 'kg' },
   { nome: 'Coco', preco: 4.00, categoria: 'frutas', imagem: 'img/coco.jpg', unidade: 'kg' },
-  { nome: 'Abobrinha', preco: 4.00, categoria: 'verduras', imagem: 'img/abobrinha.jpg', unidade: 'kg' },
-  { nome: 'Alho', preco: 4.00, categoria: 'verduras', imagem: 'img/alho.jpg', unidade: 'kg' },
-  { nome: 'Banana', preco: 4.00, categoria: 'frutas', imagem: 'img/banana.jpg', unidade: 'kg' },
+
+  { nome: 'Abobrinha', preco: 7.98, categoria: 'verduras', imagem: 'img/abobrinha.jpg', unidade: 'kg' },
+  { nome: 'Alho', preco: 36.98, categoria: 'verduras', imagem: 'img/alho.jpg', unidade: 'kg' },
+  { nome: 'Banana', preco: 5.98, categoria: 'frutas', imagem: 'img/banana.jpg', unidade: 'kg' },
 ];
 
 let carrinho = [];
@@ -136,14 +149,8 @@ div.innerHTML += `
       </div>
     </div>
   </div>`;
-
-  
-  });
-
+  })
   document.getElementById('valorTotal').innerText = `R$ ${total.toFixed(2)}`;
-  const msg = carrinho.map(item => `- ${item.quantidade}x ${item.nome}`).join('%0A');
-  document.getElementById('btnWhatsapp').href =
-    `https://wa.me/5543998100215?text=Olá%2C%20gostaria%20de%20fazer%20um%20pedido:%0A${msg}`;
 }
 
 
@@ -163,8 +170,10 @@ async function finalizarCompraSite() {
   const user = auth.currentUser;
 
   if (!user) {
-    alert("Você precisa estar logado para finalizar a compra.");
+   mostrarToastPixLike("Você precisa estar logado para finalizar a compra.", "#3E5C76");
+    setTimeout(() => {
     window.location.href = "login.html";
+  }, 2500);
     return;
   }
 
@@ -190,21 +199,20 @@ async function finalizarCompraSite() {
     atualizarCarrinho();
   } catch (error) {
     console.error("Erro ao salvar pedido:", error);
-    alert("Erro ao registrar o pedido. Tente novamente.");
+    mostrarToastPixLike("Erro ao registrar o pedido. Tente novamente.", "#3E5C76");
   }
 }
-
 async function finalizarCompraWhatsapp() {
-  // Garante que o usuário está logado
   const user = auth.currentUser;
 
   if (!user) {
-    alert("Você precisa estar logado para finalizar a compra.");
+    mostrarToastPixLike("Você precisa estar logado para finalizar a compra.", "#3E5C76");
+     setTimeout(() => {
     window.location.href = "login.html";
+  }, 2500);
     return;
   }
 
-  // Prepara o pedido
   const pedido = {
     data: new Date().toISOString(),
     total: carrinho.reduce((acc, item) => acc + item.preco * item.quantidade, 0),
@@ -218,24 +226,45 @@ async function finalizarCompraWhatsapp() {
   };
 
   try {
-    // Salva no Firestore
     await salvarPedidoFirestore(pedido);
     console.log("Pedido salvo com sucesso no Firebase (WhatsApp)");
 
-    // Monta a mensagem do WhatsApp
-    const msg = pedido.itens.map(i => `- ${i.quantidade}x ${i.nome}`).join('%0A');
-    const total = pedido.total.toFixed(2).replace('.', ',');
-    const url = `https://wa.me/5543998100215?text=Olá%2C%20gostaria%20de%20fazer%20um%20pedido:%0A${msg}%0ATotal:%20R$%20${total}`;
+    // 🔍 Busca dados do usuário
+    const userRef = doc(db, "usuarios", user.uid);
+    const userSnap = await getDoc(userRef);
+    const userData = userSnap.exists() ? userSnap.data() : {};
 
-    // Limpa o carrinho
+    const nome = userData.nome;
+    const whatsapp = userData.telefone;
+    const email = user.email;
+
+    // 📦 Monta mensagem formatada
+    let mensagem = `Olá, *${nome}*!\n\n`;
+    mensagem += `*Nome:* ${nome}\n`;
+    mensagem += `*Número de Telefone:* ${whatsapp}\n`;
+    mensagem += `*Email:* ${email}\n\n`;
+    mensagem += `*Produtos:*\n`;
+
+    pedido.itens.forEach(item => {
+      const totalItem = item.quantidade * item.preco;
+      mensagem += `${item.quantidade} ${item.unidade} ${item.nome}\nValor por ${item.unidade}: R$${item.preco.toFixed(2)} | Total: R$${totalItem.toFixed(2)}\n\n`;
+    });
+
+    mensagem += `Total: R$${pedido.total.toFixed(2)}`;
+
+    // 🔗 Gera link
+    const url = `https://wa.me/5543998100215?text=${encodeURIComponent(mensagem)}`;
+
+    // ✅ Limpa carrinho
     carrinho = [];
     atualizarCarrinho();
 
-    // Abre o WhatsApp
+    // 🔄 Abre o WhatsApp
     window.open(url, '_blank');
+
   } catch (error) {
     console.error("Erro ao salvar o pedido:", error);
-    alert("Erro ao salvar o pedido. Tente novamente.");
+    mostrarToast("Erro ao salvar o pedido. Tente novamente.", "bg-danger");
   }
 }
 
@@ -308,7 +337,7 @@ import { onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.11.0/f
 
 onAuthStateChanged(auth, (user) => {
   const btnLogin = document.getElementById('btnLogin');
-  const btnPedidos = document.querySelector('a[href="login.html"]');
+  const btnPedidos = document.querySelector('a[href^="login.html"]');
 
   if (user) {
     // Mostrar email e mudar link do botão de Pedidos
@@ -339,6 +368,41 @@ window.copiarCodigoPix = function () {
     .catch(err => {
       console.error("Erro ao copiar:", err);
     });
+}
+
+export function mostrarToastPixLike(mensagem = "Algo aconteceu!", cor = "#0d6efd") {
+  // Remove se já existir para não duplicar
+  const existente = document.getElementById("toastPixGlobal");
+  if (existente) existente.remove();
+
+  // Cria o container do toast
+  const toast = document.createElement("div");
+  toast.id = "toastPixGlobal";
+  toast.style.position = "fixed";
+  toast.style.top = "50%";
+  toast.style.left = "50%";
+  toast.style.transform = "translate(-50%, -50%)";
+  toast.style.backgroundColor = cor;
+  toast.style.color = "white";
+  toast.style.padding = "16px 24px";
+  toast.style.borderRadius = "8px";
+  toast.style.boxShadow = "0 0 10px rgba(0,0,0,0.2)";
+  toast.style.zIndex = "9999";
+  toast.style.fontSize = "20px";
+  toast.style.fontFamily = "'Quicksand', sans-serif";
+  toast.style.fontWeight = "bold";
+  toast.style.width = "800px";
+  toast.style.textAlign = "center";
+  toast.style.textWrap = "wrap";
+
+  toast.innerText = mensagem;
+
+  document.body.appendChild(toast);
+
+  // Remove após 3 segundos
+  setTimeout(() => {
+    toast.remove();
+  }, 3000);
 }
 
 

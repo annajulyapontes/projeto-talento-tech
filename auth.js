@@ -23,6 +23,7 @@ const firebaseConfig = {
   appId: "1:259096245135:web:8620461b75fbee341551fa",
   measurementId: "G-020N00975M"
 };
+import { mostrarToastPixLike } from './script.js';
 
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
@@ -38,11 +39,11 @@ if (loginForm) {
 
     signInWithEmailAndPassword(auth, email, password)
       .then(userCredential => {
-        alert('Login realizado com sucesso!');
+       mostrarToastPixLike('Login realizado com sucesso!', "#1D2D44");
         window.location.href = 'index.html';
       })
       .catch(error => {
-        alert('Erro ao fazer login: ' + error.message);
+        mostrarToastPixLike('Erro ao fazer login: ', "#1D2D44" + error.code);
       });
   });
 }
@@ -57,11 +58,11 @@ if (registerForm) {
 
     createUserWithEmailAndPassword(auth, email, password)
       .then(userCredential => {
-        alert('Cadastro realizado com sucesso!');
+        mostrarToastPixLike('Cadastro realizado com sucesso!', "#1D2D44");
         window.location.href = 'login.html';
       })
       .catch(error => {
-        alert('Erro ao cadastrar: ' + error.message);
+        mostrarToastPixLike('Erro ao cadastrar: ',"#1D2D44" + error.code);
       });
   });
 }
@@ -70,7 +71,7 @@ if (registerForm) {
 export async function salvarPedidoNoFirestore(pedido) {
   const user = auth.currentUser;
   if (!user) {
-    alert("Você precisa estar logado para salvar pedidos.");
+    mostrarToastPixLike("Você precisa estar logado para salvar pedidos.", "#1D2D44");
     return;
   }
 

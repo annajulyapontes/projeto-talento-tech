@@ -8,11 +8,11 @@ function salvarPedidoFirestore(pedido) {
       data: new Date(),
       itens: pedido
     }).then(() => {
-      alert("Pedido salvo no Firestore!");
+      mostrarToastPixLike("Pedido salvo no Firestore!", "#1D2D44");
     }).catch((error) => {
-      console.error("Erro ao salvar pedido: ", error);
+      mostrarToastPixLike("Erro ao salvar pedido: ", "#1D2D44", error);
     });
   } else {
-    alert("Usuário não está logado.");
+    mostrarToastPixLike("Usuário não está logado.", "#1D2D44");
   }
 }

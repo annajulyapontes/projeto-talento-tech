@@ -3,14 +3,11 @@ import {
   signInWithEmailAndPassword,
   createUserWithEmailAndPassword
 } from "https://www.gstatic.com/firebasejs/10.11.0/firebase-auth.js";
+import { mostrarToastPixLike } from './script.js';
 
-import { auth } from "./firebase-config.js";
-
-onAuthStateChanged(auth, (user) => {
-  if (user) {
-    window.location.href = "pedidos.html"; // já logado? Vai direto para pedidos
-  }
-});
+// Verifica redirecionamento após login
+const urlParams = new URLSearchParams(window.location.search);
+const redirect = urlParams.get("redirect");
 
 const loginForm = document.getElementById("loginForm");
 if (loginForm) {
@@ -21,10 +18,12 @@ if (loginForm) {
 
     try {
       await signInWithEmailAndPassword(auth, email, password);
-      alert("Login realizado com sucesso!");
-      window.location.href = "pedidos.html";
+      mostrarToastPixLike("Login realizado com sucesso!", "#1D2D44");
+      setTimeout(() => {
+        window.location.href = redirect === "pedidos" ? "pedidos.html" : "index.html";
+      }, 2000);
     } catch (error) {
-      alert("Erro ao fazer login: " + error.message);
+     mostrarToastPixLike("Erro ao fazer login: " + traduzErroFirebase(error), "#1D2D44");
     }
   });
 }
@@ -38,10 +37,36 @@ if (registerForm) {
 
     try {
       await createUserWithEmailAndPassword(auth, email, password);
-      alert("Cadastro realizado com sucesso!");
-      window.location.href = "pedidos.html";
+      mostrarToastPixLike("Usuário cadastrado com sucesso!", "#1D2D44");
+      setTimeout(() => {
+        window.location.href = redirect === "pedidos" ? "pedidos.html" : "index.html";
+      }, 2000);
     } catch (error) {
-      alert("Erro ao cadastrar: " + error.message);
+      mostrarToastPixLike("Erro ao cadastrar: " + traduzErroFirebase(error), "#1D2D44");
     }
   });
+}
+
+// Função opcional para traduzir mensagens do Firebase
+function traduzErroFirebase(error) {
+  const msg = error.code;
+  switch (msg) {
+    case "auth/email-already-in-use":
+      return "Este email já está em uso.";
+    case "auth/invalid-email":
+      return "Email inválido.";
+    case "auth/user-not-found":
+      return "Usuário não encontrado.";
+    case "auth/wrong-password":
+    case "auth/invalid-credential":
+      return "Email ou senha incorretos.";
+    case "auth/too-many-requests":
+      return "Você fez muitas tentativas.\nTente novamente mais tarde.";
+    case "auth/weak-password":
+      return "A senha deve ter pelo menos 6 caracteres.";
+    case "auth/email-already-in-use":
+      return "Este email já está em uso.";
+    default:
+      return "Erro desconhecido: " + msg;
+  }
 }

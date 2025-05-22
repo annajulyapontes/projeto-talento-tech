@@ -2,6 +2,7 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.11.0/firebase-app.js";
 import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/10.11.0/firebase-auth.js";
 import { getFirestore, doc, setDoc } from "https://www.gstatic.com/firebasejs/10.11.0/firebase-firestore.js";
+import { mostrarToastPixLike } from './script.js';
 
 // CONFIGURAÇÃO DO FIREBASE
 const firebaseConfig = {
@@ -41,10 +42,10 @@ if (registerForm) {
       pedidos: []
 });
 
-      alert("Usuário cadastrado com sucesso!");
-      window.location.href = "pedidos.html";
+    mostrarToastPixLike("Usuário cadastrado com sucesso!", "#1D2D44");
+      window.location.href = "index.html";
     } catch (error) {
-      alert("Erro ao cadastrar: " + error.message);
+     mostrarToastPixLike("Erro ao cadastrar: " + error.code, "#1D2D44");
     }
   });
 }
@@ -60,9 +61,9 @@ if (loginForm) {
     try {
       await signInWithEmailAndPassword(auth, email, password);
       localStorage.setItem("usuarioLogado", email);
-      window.location.href = "pedidos.html";
+      window.location.href = "index.html";
     } catch (error) {
-      alert("Erro ao fazer login: " + error.message);
+    mostrarToastPixLike("Erro ao fazer login: " + error.code, "#1D2D44");
     }
   });
 }
