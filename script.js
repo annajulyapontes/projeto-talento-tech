@@ -24,24 +24,18 @@ const produtos = [
   { nome: 'Repolho', preco: 3.98, categoria: 'verduras', imagem: 'img/repolho.jpg', unidade: 'un' },
   { nome: 'Repolho Roxo', preco: 5.98, categoria: 'verduras', imagem: 'img/repolho roxo.jpg', unidade: 'un' },
   { nome: 'Abóbora Cabotiá', preco: 5.98, categoria: 'verduras', imagem: 'img/cabotiá.jpg', unidade: 'un' },
-
-  { nome: 'Couve', preco: 3.98, categoria: 'verduras', imagem: 'img/couve.jpg', unidade: 'kg' },
-
+  { nome: 'Couve', preco: 7.98, categoria: 'verduras', imagem: 'img/couve.jpg', unidade: 'kg' },
   { nome: 'Batata', preco: 7.98, categoria: 'verduras', imagem: 'img/batata.jpg', unidade: 'kg' },
   { nome: 'Batata Doce Roxa', preco: 4.98, categoria: 'verduras', imagem: 'img/batata doce.jpg', unidade: 'kg' },
   { nome: 'Cenoura', preco: 5.98, categoria: 'verduras', imagem: 'img/cenoura.jpg', unidade: 'kg' },
   { nome: 'Pão', preco: 15, categoria: 'artesanais', imagem: 'img/pão.jpg', unidade: 'un' },
-
   { nome: 'Queijo', preco: 30, categoria: 'artesanais', imagem: 'img/queijo.jpg', unidade: 'un' },
-
   { nome: 'Bolo de Chocolate', preco: 35, categoria: 'artesanais', imagem: 'img/Bolo de chocolate.jpg', unidade: 'un' },
   { nome: 'Empadão de Frango', preco: 35, categoria: 'artesanais', imagem: 'img/empadão de frango.jpg', unidade: 'un' },
   { nome: 'Torta de Maracujá', preco: 35, categoria: 'artesanais', imagem: 'img/torta de maracujá.jpg', unidade: 'un' },
   { nome: 'Doce de Leite', preco: 10.00, categoria: 'artesanais', imagem: 'img/doce de leite.jpg', unidade: 'un' },
   { nome: 'Maracujá', preco: 11.98, categoria: 'frutas', imagem: 'img/maracuja.jpg', unidade: 'kg' },
-
-  { nome: 'Acerola', preco: 5.98, categoria: 'frutas', imagem: 'img/acerola.jpg', unidade: 'kg' },
-
+  { nome: 'Acerola', preco: 15.98, categoria: 'frutas', imagem: 'img/acerola.jpg', unidade: 'kg' },
   { nome: 'Bolo Red Velvet', preco: 35, categoria: 'artesanais', imagem: 'img/bolo red velvet.jpg', unidade: 'un' },
   { nome: 'Bolo de Cenoura com cobertura de chocolate', preco: 35, categoria: 'artesanais', imagem: 'img/bolo de cenoura com cobertura de chocolate.jpg', unidade: 'un' },
   { nome: 'Bolo de Limão', preco: 35, categoria: 'artesanais', imagem: 'img/bolo de limão.jpg', unidade: 'un' },
@@ -153,7 +147,7 @@ function atualizarCarrinho() {
         <div class="item-carrinho-conteudo">
           <div class="item-carrinho-info">
             <h6>${item.nome}</h6>
-            <p>${item.quantidade} x R$ ${item.preco.toFixed(2)}</p>
+            <p>${item.quantidade} ${item.unidade} x R$ ${item.preco.toFixed(2)}</p>
           </div>
           <div class="item-carrinho-controls">
             <button onclick="alterarQuantidadeCarrinho(${index}, -1)">−</button>

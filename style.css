@@ -472,30 +472,8 @@ body {
     word-break: break-word; 
   }
 }
-
 @media (max-width: 768px) {
-  .offcanvas-body {
-    padding: 10px 16px;
-  }
-
-  .menu-lateral li {
-    margin-bottom: 12px; /* menor espaçamento */
-  }
-
-  .menu-lateral a {
-    font-size: 1rem; /* tamanho menor da fonte */
-  }
-
-  .menu-lateral i {
-    font-size: 1.2rem; /* ícones menores */
-    margin-right: 6px;
-  }
-
-  .offcanvas-title {
-    font-size: 1rem; /* título menor */
-  }
-
-  .offcanvas-header {
-    padding: 10px 14px;
+  .offcanvas-start {
+    width: 240px !important; /* ou 220px, ajuste como quiser */
   }
 }
