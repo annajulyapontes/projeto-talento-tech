@@ -67,7 +67,7 @@ body {
 }
 
 #campoBusca {
-  width: 180px;
+  width: 160px;
   margin-left: 10px;
   transition: all 0.3s ease;
 }
@@ -472,33 +472,6 @@ body {
     word-break: break-word; 
   }
 }
-@media (max-width: 768px) {
-  .offcanvas-body {
-    padding: 10px 16px;
-  }
-
-  .menu-lateral li {
-    margin-bottom: 12px; /* menor espaçamento */
-  }
-
-  .menu-lateral a {
-    font-size: 1rem; /* tamanho menor da fonte */
-  }
-
-  .menu-lateral i {
-    font-size: 1.2rem; /* ícones menores */
-    margin-right: 6px;
-  }
-
-  .offcanvas-title {
-    font-size: 1rem; /* título menor */
-  }
-
-  .offcanvas-header {
-    padding: 10px 14px;
-  }
-}
-
 @media (max-width: 768px) {
   .offcanvas-start {
     width: 245px !important;
