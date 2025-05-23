@@ -72,7 +72,6 @@ body {
   transition: all 0.3s ease;
 }
 
-/* Carrinho lateral */
 #painelCarrinho {
   position: fixed;
   top: 0;
@@ -80,9 +79,9 @@ body {
   width: 320px;
   height: 100vh;
   background: #fff8eb;
-  padding: 20px 25px 20px 20px; /* direita extra para margem contra a scrollbar */
+  padding: 20px 25px 20px 20px; 
   box-shadow: -4px 0 12px rgba(0, 0, 0, 0.15);
-  z-index: 1050; /* acima da navbar */
+  z-index: 1050; 
   overflow-y: auto;
   overflow-x: hidden;
   display: none;
@@ -110,8 +109,6 @@ body {
   font-size: 2.3rem;
   font-weight: 600;
 }
-
-/* Produtos */
 .produto-img {
   width: 250px;
   height: 250px;
@@ -120,7 +117,6 @@ body {
   margin: 0 auto 10px auto;
   display: block;
 }
-
 .card {
   width: 350px;
   margin-left: 1em;
@@ -135,11 +131,9 @@ body {
   transition: transform 0.2s ease;
   background-color: #1D2D44;
 }
-
 .card:hover {
   transform: translateY(-5px);
 }
-
 .card-title {
   font-family: 'Quicksand', sans-serif;
   font-size: 1.3rem;
@@ -148,7 +142,6 @@ body {
   text-align: center;
   margin-bottom: 0.4rem;
 }
-
 .card-text {
   font-family: 'Quicksand', sans-serif;
   color: #fff8eb;
@@ -157,13 +150,11 @@ body {
   text-align: center;
   margin-bottom: 1rem;
 }
-
 .input-group {
   display: flex;
   justify-content: center;
   margin-bottom: 10px;
 }
-
 .input-group .btn {
   font-size: 1.7rem;
   padding: 6px 14px;
@@ -173,7 +164,6 @@ body {
   color: #fff8eb;
   box-shadow: none;
 }
-
 .input-group input {
   max-width: 60px;
   text-align: center;
@@ -184,19 +174,15 @@ body {
   font-weight: bold;
   color: #fff8eb;
 }
-
 .btn-primary {
   background-color: #3E5C76;
   border: none;
   font-weight: 600;
   color: #fff8eb;
 }
-
 .btn-primary:hover {
   background-color: #3E5C76;
 }
-
-/* Barra de Categorias */
 .barra-categorias {
   background-color: #1D2D44;
   border-bottom: 1px solid #ddd;
@@ -206,7 +192,6 @@ body {
   top: 66px;
   z-index: 998;
 }
-
 .categoria-link {
   font-family: 'Quicksand', sans-serif;
   font-weight: 600;
@@ -217,7 +202,6 @@ body {
   position: relative;
   transition: color 0.3s ease;
 }
-
 .categoria-link::after {
   content: "";
   position: absolute;
@@ -229,17 +213,14 @@ body {
   width: 0;
   transition: width 0.3s ease;
 }
-
 .categoria-link:hover::after,
 .categoria-link.active::after {
   width: 100%;
 }
-
 .categoria-link:hover,
 .categoria-link.active {
   color: #fff8eb;
 }
-/* Carrinho lateral */
 #painelCarrinho {
   position: fixed;
   top: 0;
@@ -255,8 +236,6 @@ body {
   display: none;
   font-family: 'Quicksand', sans-serif;
 }
-
-/* Cabeçalho do carrinho */
 #carrinhoTopo {
   background-color: #1D2D44;
   color: white;
@@ -276,12 +255,9 @@ body {
   color: white;
   cursor: pointer;
 }
-
-/* Lista de produtos no carrinho */
 #listaCarrinho {
   padding: 15px;
 }
-
 .item-carrinho {
   position: relative;
   display: flex;
@@ -322,7 +298,6 @@ body {
   color: #fff8eb;
 }
 
-/* Controles de quantidade */
 .item-carrinho-controls {
   display: flex;
   align-items: center;
@@ -344,7 +319,6 @@ body {
   color: #fff8eb;
 }
 
-/* Total */
 .carrinho-total {
   font-family: 'Quicksand', sans-serif;
   font-weight: 700;
@@ -478,4 +452,16 @@ body {
   100% { opacity: 0; transform: translate(-50%, -40%); }
 }
 
+@media (max-width: 768px) {
+  .barra-categorias .container {
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    white-space: nowrap;
+    padding: 0 10px;
+  }
+
+  .categoria-link {
+    flex: 0 0 auto;
+  }
+}
 
