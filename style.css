@@ -410,7 +410,7 @@ body {
 }
 
 .menu-lateral i {
-  font-size: 1.4rem;
+  font-size: 1.5rem;
 }
 #menuLateral {
   background-color: #1D2D44 !important;
@@ -428,21 +428,23 @@ body {
   font-weight: 500;
   opacity: 0.85;
 }
-.toast-pix {
-  display: none;
+#toastPixGlobal {
   position: fixed;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
   background-color: #1D2D44;
   color: #fff8eb;
-  padding: 15px 30px;
-  border-radius: 10px;
-  font-size: 1.2rem;
-  font-weight: 600;
+  padding: 16px 20px;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.2);
   z-index: 9999;
-  box-shadow: 0 0 10px rgba(0,0,0,0.3);
-  animation: fadeInOut 2.5s ease forwards;
+  font-size: 1rem;
+  font-family: 'Quicksand', sans-serif;
+  font-weight: bold;
+  max-width: 90vw; /* 📱 adapta à tela */
+  word-wrap: break-word;
+  text-align: center;
 }
 
 @keyframes fadeInOut {
