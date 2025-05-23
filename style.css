@@ -503,11 +503,6 @@ body.offcanvas-backdrop {
   }
    .email-pequeno {
     font-size: 0.7rem;
-    margin-top: 4px;
-    text-align: right;
-    word-break: break-word;
-    max-width: 140px;
-    display: block;
   }
 }
 
