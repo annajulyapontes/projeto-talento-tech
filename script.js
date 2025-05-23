@@ -132,7 +132,7 @@ function atualizarCarrinho() {
   const div = document.getElementById('listaCarrinho');
   div.innerHTML = '';
   let total = 0;
-  let totalItens = 0;
+  let totalItens = carrinho.length;
 
   carrinho.forEach((item, index) => {
     const subtotal = item.preco * item.quantidade;
@@ -338,6 +338,9 @@ if (btnLogin) {
       menu.show();
     });
   }
+});
+document.addEventListener('hidden.bs.offcanvas', () => {
+  document.body.style.overflow = '';
 });
 
 import { onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.11.0/firebase-auth.js";

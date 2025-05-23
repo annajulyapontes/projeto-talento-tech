@@ -475,6 +475,7 @@ body {
 .offcanvas-backdrop {
   transition: opacity 0.2s ease-in-out;
   z-index: 1040 !important;
+  background-color: rgba(0, 0, 0, 0.5) !important;
 }
 
 body:has(.offcanvas.show) {
@@ -485,9 +486,26 @@ body:not(:has(.offcanvas.show)) {
   overflow: auto !important;
 }
 
+body.offcanvas-backdrop {
+  overflow: hidden !important;
+}
+
 @media (max-width: 768px) {
   #menuLateral {
-    width: 240px !important; /* ajuste a largura para celular */
+    width: 240px !important; 
+     .navbar .ms-auto {
+    flex-direction: column;
+    align-items: flex-end;
+  }
+
+  .email-pequeno {
+    display: block;
+    font-size: 0.7rem;
+    margin-top: 4px;
+    text-align: right;
+    max-width: 140px;
+    word-break: break-word;
+  }
   }
 }
 
