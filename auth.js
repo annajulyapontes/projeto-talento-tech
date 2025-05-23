@@ -45,7 +45,7 @@ if (loginForm) {
       }, 3000);
       })
       .catch(error => {
-        mostrarToastPixLike('Erro ao fazer login: ', "#1D2D44" + error.code);
+        mostrarToastPixLike('Erro ao fazer login: ', "#1D2D44" + traduzErroFirebase(error));
       });
   });
 }
@@ -66,7 +66,7 @@ if (registerForm) {
       }, 3000);
       })
       .catch(error => {
-        mostrarToastPixLike('Erro ao cadastrar: ',"#1D2D44" + error.code);
+        mostrarToastPixLike('Erro ao cadastrar: ',"#1D2D44" + traduzErroFirebase(error));
       });
   });
 }
@@ -89,6 +89,6 @@ export async function salvarPedidoNoFirestore(pedido) {
     await addDoc(collection(db, "pedidos", user.uid, "itens"), pedidoData);
     console.log("Pedido salvo com sucesso");
   } catch (e) {
-    console.error("Erro ao salvar pedido: ", e);
+    console.error("Erro ao salvar pedido: ", + traduzErroFirebase(error));
   }
 }

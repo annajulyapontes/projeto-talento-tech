@@ -473,7 +473,8 @@ body {
   }
 }
 @media (max-width: 768px) {
-  .offcanvas-start {
-    width: 260px !important;
+  #menuLateral {
+    width: 240px !important; /* ajuste a largura para celular */
   }
 }
+

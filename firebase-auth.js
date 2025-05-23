@@ -47,7 +47,7 @@ if (registerForm) {
         window.location.href = redirect === "pedidos" ? "pedidos.html" : "index.html";
       }, 3000);
     } catch (error) {
-     mostrarToastPixLike("Erro ao cadastrar: " + error.code, "#1D2D44");
+     mostrarToastPixLike("Erro ao cadastrar: " + traduzErroFirebase(error), "#1D2D44");
     }
   });
 }
@@ -67,7 +67,7 @@ if (loginForm) {
         window.location.href = redirect === "pedidos" ? "pedidos.html" : "index.html";
       }, 3000);
     } catch (error) {
-    mostrarToastPixLike("Erro ao fazer login: " + error.code, "#1D2D44");
+    mostrarToastPixLike("Erro ao fazer login: " + traduzErroFirebase(error), "#1D2D44");
     }
   });
 }

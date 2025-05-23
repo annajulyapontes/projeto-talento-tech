@@ -47,9 +47,8 @@ if (registerForm) {
   });
 }
 
-// Função opcional para traduzir mensagens do Firebase
 function traduzErroFirebase(error) {
-  const msg = error.code;
+  const msg = error?.code || "erro-desconhecido";
   switch (msg) {
     case "auth/email-already-in-use":
       return "Este email já está em uso.";
@@ -64,9 +63,10 @@ function traduzErroFirebase(error) {
       return "Você fez muitas tentativas.\nTente novamente mais tarde.";
     case "auth/weak-password":
       return "A senha deve ter pelo menos 6 caracteres.";
-    case "auth/email-already-in-use":
-      return "Este email já está em uso.";
+    case "auth/network-request-failed":
+      return "Erro de conexão com a internet.";
     default:
       return "Erro desconhecido: " + msg;
   }
 }
+
