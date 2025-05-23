@@ -493,7 +493,8 @@ body.offcanvas-backdrop {
 @media (max-width: 768px) {
   #menuLateral {
     width: 240px !important; 
-     .navbar .ms-auto {
+  }
+  .navbar .ms-auto {
     flex-direction: column;
     align-items: flex-end;
   }
@@ -504,7 +505,6 @@ body.offcanvas-backdrop {
     word-break: break-word;
     max-width: 140px;
     display: block;
-  }
   }
 }
 
