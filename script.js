@@ -351,13 +351,8 @@ onAuthStateChanged(auth, (user) => {
 
   if (user) {
     // Mostrar email e mudar link do botão de Pedidos
-  if (btnLogin) {
-  btnLogin.innerHTML = `<i class="bi bi-person-circle"></i>`;
-    }
-  const emailSpan = document.getElementById('emailUsuario');
-  if (emailSpan) {
-  emailSpan.innerText = user.email;
-  emailSpan.classList.remove('d-none');
+    if (btnLogin) {
+      btnLogin.innerHTML = `<i class="bi bi-person-circle me-1"></i> <span class="email-pequeno">${user.email}</span>`;
     }
     if (btnPedidos) {
       btnPedidos.href = "pedidos.html"; // redireciona corretamente
