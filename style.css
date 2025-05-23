@@ -472,6 +472,19 @@ body {
     word-break: break-word; 
   }
 }
+.offcanvas-backdrop {
+  transition: opacity 0.2s ease-in-out;
+  z-index: 1040 !important;
+}
+
+body:has(.offcanvas.show) {
+  overflow: hidden;
+}
+
+body:not(:has(.offcanvas.show)) {
+  overflow: auto !important;
+}
+
 @media (max-width: 768px) {
   #menuLateral {
     width: 240px !important; /* ajuste a largura para celular */
