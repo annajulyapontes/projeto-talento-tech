@@ -497,14 +497,13 @@ body.offcanvas-backdrop {
     flex-direction: column;
     align-items: flex-end;
   }
-
-  .email-pequeno {
-    display: block;
+   .email-pequeno {
     font-size: 0.7rem;
     margin-top: 4px;
     text-align: right;
-    max-width: 140px;
     word-break: break-word;
+    max-width: 140px;
+    display: block;
   }
   }
 }
