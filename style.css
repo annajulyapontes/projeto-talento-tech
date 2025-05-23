@@ -454,14 +454,17 @@ body {
 
 @media (max-width: 768px) {
   .barra-categorias .container {
-    flex-wrap: nowrap;
-    overflow-x: auto;
-    white-space: nowrap;
-    padding: 0 10px;
+    flex-direction: column;
+    align-items: center;
+    gap: 5px;
   }
 
   .categoria-link {
-    flex: 0 0 auto;
+    display: inline-block;
+    text-align: center;
+    white-space: normal;
+    max-width: 100%;
+    word-break: break-word; 
   }
 }
 
