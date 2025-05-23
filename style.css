@@ -473,6 +473,15 @@ body {
   }
 }
 @media (max-width: 768px) {
+  .offcanvas-body {
+    padding: 10px 16px;
+  }
+  .offcanvas-header {
+    padding: 10px 14px;
+  }
+}
+
+@media (max-width: 768px) {
   .offcanvas-start {
     width: 245px;
   }
