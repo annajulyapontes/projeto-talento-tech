@@ -428,7 +428,23 @@ body {
   font-weight: 500;
   opacity: 0.85;
 }
-#toastPixGlobal {
+.toast-pix {
+  display: none;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: #1D2D44;
+  color: #fff8eb;
+  padding: 15px 30px;
+  border-radius: 10px;
+  font-size: 1.2rem;
+  font-weight: 600;
+  z-index: 9999;
+  box-shadow: 0 0 10px rgba(0,0,0,0.3);
+  animation: fadeInOut 2.5s ease forwards;
+}
+#mostrarToastPixLike {
   position: fixed;
   top: 50%;
   left: 50%;
@@ -442,12 +458,13 @@ body {
   font-size: 1rem;
   font-family: 'Quicksand', sans-serif;
   font-weight: bold;
-  max-width: 90%;       
+  max-width: 90%;          /* 🔧 garante que não estoura a tela */
   width: fit-content;
   text-align: center;
-  white-space: normal;    
-  word-break: break-word; 
+  white-space: normal;     /* 🔧 permite quebra de linha */
+  word-break: break-word;  /* 🔧 quebra palavras longas */
 }
+
 
 @keyframes fadeInOut {
   0% { opacity: 0; transform: translate(-50%, -60%); }
