@@ -404,7 +404,6 @@ export function mostrarToastPixLike(mensagem = "Algo aconteceu!", cor = "#0d6efd
   toast.style.fontSize = "20px";
   toast.style.fontFamily = "'Quicksand', sans-serif";
   toast.style.fontWeight = "bold";
-  toast.style.width = "800px";
   toast.style.textAlign = "center";
   toast.style.textWrap = "wrap";
 
