@@ -474,6 +474,6 @@ body {
 }
 @media (max-width: 768px) {
   .offcanvas-start {
-    width: 240px !important; /* ou 220px, ajuste como quiser */
+    width: 320px; 
   }
 }
