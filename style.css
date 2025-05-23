@@ -489,6 +489,9 @@ body:not(:has(.offcanvas.show)) {
 body.offcanvas-backdrop {
   overflow: hidden !important;
 }
+.email-pequeno {
+  font-size: 0.55rem;
+}
 
 @media (max-width: 768px) {
   #menuLateral {
