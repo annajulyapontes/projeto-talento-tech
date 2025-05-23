@@ -43,7 +43,9 @@ if (registerForm) {
 });
 
     mostrarToastPixLike("Usuário cadastrado com sucesso!", "#1D2D44");
-      window.location.href = "index.html";
+      setTimeout(() => {
+        window.location.href = redirect === "pedidos" ? "pedidos.html" : "index.html";
+      }, 3000);
     } catch (error) {
      mostrarToastPixLike("Erro ao cadastrar: " + error.code, "#1D2D44");
     }
@@ -61,7 +63,9 @@ if (loginForm) {
     try {
       await signInWithEmailAndPassword(auth, email, password);
       localStorage.setItem("usuarioLogado", email);
-      window.location.href = "index.html";
+      setTimeout(() => {
+        window.location.href = redirect === "pedidos" ? "pedidos.html" : "index.html";
+      }, 3000);
     } catch (error) {
     mostrarToastPixLike("Erro ao fazer login: " + error.code, "#1D2D44");
     }

@@ -21,7 +21,7 @@ if (loginForm) {
       mostrarToastPixLike("Login realizado com sucesso!", "#1D2D44");
       setTimeout(() => {
         window.location.href = redirect === "pedidos" ? "pedidos.html" : "index.html";
-      }, 2000);
+      }, 3000);
     } catch (error) {
      mostrarToastPixLike("Erro ao fazer login: " + traduzErroFirebase(error), "#1D2D44");
     }
@@ -40,7 +40,7 @@ if (registerForm) {
       mostrarToastPixLike("Usuário cadastrado com sucesso!", "#1D2D44");
       setTimeout(() => {
         window.location.href = redirect === "pedidos" ? "pedidos.html" : "index.html";
-      }, 2000);
+      }, 3000);
     } catch (error) {
       mostrarToastPixLike("Erro ao cadastrar: " + traduzErroFirebase(error), "#1D2D44");
     }

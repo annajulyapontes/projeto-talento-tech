@@ -32,8 +32,10 @@
     <div class="ms-auto d-flex align-items-center">
       <input type="search" class="form-control form-control-sm d-none me-3" id="campoBusca" placeholder="Buscar...">
       <button class="btn btn-link text-white lupa-btn" id="btnLupa"><i class="bi bi-search"></i></button>
-      <button class="btn btn-link text-white carrinho-btn" id="btnCarrinho"><i class="bi bi-cart3"></i></button> 
-     <button class="btn btn-link text-white login-btn" id="btnLogin"><i class="bi bi-person-circle"></i></button>
+      <button class="btn btn-link text-white carrinho-btn position-relative" id="btnCarrinho">
+      <i class="bi bi-cart3"></i>
+      <span id="contadorCarrinho" class="badge position-absolute top-0 start-100 translate-middle rounded-pill">0</span></button>
+      <button class="btn btn-link text-white login-btn" id="btnLogin"><i class="bi bi-person-circle"></i></button>
       </div>
       <br></br>
     </div>

@@ -16,15 +16,19 @@ const produtos = [
   { nome: 'Goiaba', preco: 4.00, categoria: 'frutas', imagem: 'img/goiaba.jpg', unidade: 'kg' },
   { nome: 'Limão', preco: 5.50, categoria: 'frutas', imagem: 'img/limão.jpg', unidade: 'kg' },
   { nome: 'Tomate', preco: 9.98, categoria: 'verduras', imagem: 'img/tomate.jpg', unidade: 'kg' },
-
-  { nome: 'Alface', preco: 2.50, categoria: 'verduras', imagem: '', unidade: 'kg' },
-
   { nome: 'Chuchu', preco: 6.98, categoria: 'verduras', imagem: 'img/chuchu.jpg', unidade: 'kg' },
   { nome: 'Inhame', preco: 9.98, categoria: 'verduras', imagem: 'img/inhame.jpg', unidade: 'kg' },
   { nome: 'Beterraba', preco: 5.98, categoria: 'verduras', imagem: 'img/beterraba.jpg', unidade: 'kg' },
   { nome: 'Cebola', preco: 3.98, categoria: 'verduras', imagem: 'img/cebola.jpg', unidade: 'kg' },
-  { nome: 'Repolho', preco: 3.98, categoria: 'verduras', imagem: 'img/repolho.jpg', unidade: 'kg' },
+  { nome: 'Cebola Roxa', preco: 9.98, categoria: 'verduras', imagem: 'img/cebola roxa.jpg', unidade: 'kg' },
+  { nome: 'Repolho', preco: 3.98, categoria: 'verduras', imagem: 'img/repolho.jpg', unidade: 'un' },
+  { nome: 'Repolho Roxo', preco: 5.98, categoria: 'verduras', imagem: 'img/repolho roxo.jpg', unidade: 'un' },
+  { nome: 'Abóbora Cabotiá', preco: 5.98, categoria: 'verduras', imagem: 'img/cabotiá.jpg', unidade: 'un' },
+
+  { nome: 'Couve', preco: 3.98, categoria: 'verduras', imagem: 'img/couve.jpg', unidade: 'kg' },
+
   { nome: 'Batata', preco: 7.98, categoria: 'verduras', imagem: 'img/batata.jpg', unidade: 'kg' },
+  { nome: 'Batata Doce Roxa', preco: 4.98, categoria: 'verduras', imagem: 'img/batata doce.jpg', unidade: 'kg' },
   { nome: 'Cenoura', preco: 5.98, categoria: 'verduras', imagem: 'img/cenoura.jpg', unidade: 'kg' },
   { nome: 'Pão', preco: 15, categoria: 'artesanais', imagem: 'img/pão.jpg', unidade: 'un' },
 
@@ -35,7 +39,7 @@ const produtos = [
   { nome: 'Torta de Maracujá', preco: 35, categoria: 'artesanais', imagem: 'img/torta de maracujá.jpg', unidade: 'un' },
   { nome: 'Doce de Leite', preco: 10.00, categoria: 'artesanais', imagem: 'img/doce de leite.jpg', unidade: 'un' },
   { nome: 'Maracujá', preco: 11.98, categoria: 'frutas', imagem: 'img/maracuja.jpg', unidade: 'kg' },
-  
+
   { nome: 'Acerola', preco: 5.98, categoria: 'frutas', imagem: 'img/acerola.jpg', unidade: 'kg' },
 
   { nome: 'Bolo Red Velvet', preco: 35, categoria: 'artesanais', imagem: 'img/bolo red velvet.jpg', unidade: 'un' },
@@ -120,6 +124,13 @@ function adicionarCarrinho(index) {
   }
 
   atualizarCarrinho();
+
+  // ✅ Animação no ícone do carrinho
+  const icone = document.getElementById('btnCarrinho');
+  if (icone) {
+    icone.classList.add('animado');
+    setTimeout(() => icone.classList.remove('animado'), 400);
+  }
 }
 
 
@@ -127,32 +138,39 @@ function atualizarCarrinho() {
   const div = document.getElementById('listaCarrinho');
   div.innerHTML = '';
   let total = 0;
+  let totalItens = 0;
 
   carrinho.forEach((item, index) => {
     const subtotal = item.preco * item.quantidade;
     total += subtotal;
+    totalItens += item.quantidade;
 
-div.innerHTML += `
-  <div class="item-carrinho">
-    <button class="remove-btn" onclick="removerItemCarrinho(${index})">&times;</button>
-    <img src="${item.imagem || 'https://via.placeholder.com/60'}" alt="${item.nome}">
-    
-    <div class="item-carrinho-conteudo">
-      <div class="item-carrinho-info">
-        <h6>${item.nome}</h6>
-        <p>${item.quantidade} x R$ ${item.preco.toFixed(2)}</p>
-      </div>
-      <div class="item-carrinho-controls">
-        <button onclick="alterarQuantidadeCarrinho(${index}, -1)">−</button>
-        <span>${item.quantidade}</span>
-        <button onclick="alterarQuantidadeCarrinho(${index}, 1)">+</button>
-      </div>
-    </div>
-  </div>`;
-  })
+    div.innerHTML += `
+      <div class="item-carrinho">
+        <button class="remove-btn" onclick="removerItemCarrinho(${index})">&times;</button>
+        <img src="${item.imagem || 'https://via.placeholder.com/60'}" alt="${item.nome}">
+        
+        <div class="item-carrinho-conteudo">
+          <div class="item-carrinho-info">
+            <h6>${item.nome}</h6>
+            <p>${item.quantidade} x R$ ${item.preco.toFixed(2)}</p>
+          </div>
+          <div class="item-carrinho-controls">
+            <button onclick="alterarQuantidadeCarrinho(${index}, -1)">−</button>
+            <span>${item.quantidade}</span>
+            <button onclick="alterarQuantidadeCarrinho(${index}, 1)">+</button>
+          </div>
+        </div>
+      </div>`;
+  });
+
   document.getElementById('valorTotal').innerText = `R$ ${total.toFixed(2)}`;
-}
 
+  // Atualiza contador visual
+  const contador = document.getElementById('contadorCarrinho');
+  contador.innerText = totalItens;
+  contador.style.display = totalItens > 0 ? 'inline-block' : 'none';
+}
 
 function alterarQuantidadeCarrinho(index, delta) {
   let item = carrinho[index];
@@ -272,11 +290,6 @@ async function finalizarCompraWhatsapp() {
 function alternarCarrinho() {
   const painel = document.getElementById('painelCarrinho');
   painel.style.display = (painel.style.display === 'none' || painel.style.display === '') ? 'block' : 'none';
-}
-
-function rolarPara(id) {
-  const destino = document.getElementById(id);
-  destino.scrollIntoView({ behavior: 'smooth' });
 }
 
 document.addEventListener('DOMContentLoaded', function () {

@@ -40,7 +40,9 @@ if (loginForm) {
     signInWithEmailAndPassword(auth, email, password)
       .then(userCredential => {
        mostrarToastPixLike('Login realizado com sucesso!', "#1D2D44");
-        window.location.href = 'index.html';
+       setTimeout(() => {
+        window.location.href = redirect === "pedidos" ? "pedidos.html" : "index.html";
+      }, 3000);
       })
       .catch(error => {
         mostrarToastPixLike('Erro ao fazer login: ', "#1D2D44" + error.code);
@@ -59,7 +61,9 @@ if (registerForm) {
     createUserWithEmailAndPassword(auth, email, password)
       .then(userCredential => {
         mostrarToastPixLike('Cadastro realizado com sucesso!', "#1D2D44");
-        window.location.href = 'login.html';
+       setTimeout(() => {
+        window.location.href = redirect === "pedidos" ? "pedidos.html" : "index.html";
+      }, 3000);
       })
       .catch(error => {
         mostrarToastPixLike('Erro ao cadastrar: ',"#1D2D44" + error.code);

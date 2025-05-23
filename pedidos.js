@@ -1,6 +1,7 @@
 import { auth, db } from './firebase-config.js';
 import { onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.11.0/firebase-auth.js";
 import { collection, getDocs } from "https://www.gstatic.com/firebasejs/10.11.0/firebase-firestore.js";
+import { query, orderBy } from "https://www.gstatic.com/firebasejs/10.11.0/firebase-firestore.js";
 
 const container = document.getElementById("containerPedidos");
 
@@ -10,8 +11,9 @@ onAuthStateChanged(auth, async (user) => {
     return;
   }
 
-  const pedidosRef = collection(db, "usuarios", user.uid, "pedidos");
-  const snapshot = await getDocs(pedidosRef);
+ const pedidosRef = collection(db, "usuarios", user.uid, "pedidos");
+ const q = query(pedidosRef, orderBy("data", "desc"));
+ const snapshot = await getDocs(q);
 
   if (snapshot.empty) {
     container.innerHTML = `<p class="mensagem-vazia">Você ainda não fez nenhum pedido.</p>`;
