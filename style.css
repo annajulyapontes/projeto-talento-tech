@@ -548,42 +548,13 @@ body.offcanvas-backdrop {
     max-width: 100%;
     word-break: break-word; 
   }
-    /* Container do slider */
-  #promocoesWrapper {
-    overflow: hidden;
-    width: 100%;
-    padding: 0;
+   #promocoesDoDia {
+    padding: 0 0.5rem; /* menos espaço nas bordas no celular */
   }
 
-  /* Container dos cards (slider) */
-  #promocoesDoDia {
-    display: flex;
-    flex-wrap: nowrap;
-    transition: transform 0.3s ease;
-    /* Remova gaps para evitar que os cards fiquem fora da tela */
-    gap: 0;
-    padding: 0;
-  }
-
-  /* Cada card no slider */
   #promocoesDoDia .card {
-    /* Use 90% ou 100% da viewport; ajuste conforme necessário */
-    width: 90vw;
-    max-width: 90vw;
-    margin: 0;
-    /* Remova margens laterais que possam causar corte */
-    padding: 16px;
-    border-radius: 12px;
-    box-sizing: border-box;
-  }
-
-  /* Ajusta a imagem no card para ocupar a largura total do card sem cortar */
-  #promocoesDoDia .card img {
-    width: 100%;
-    height: auto;
-    object-fit: cover;
-    /* Se preferir imagem redonda em outros contextos, aqui usamos um border-radius menor */
-    border-radius: 12px;
+    width: calc(90vw - 1rem); /* ocupa quase toda a largura da tela */
+    margin: 0 auto;
   }
 }
 
