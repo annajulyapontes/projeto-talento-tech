@@ -431,6 +431,31 @@ function renderizarPromocoesAleatorias() {
       menu.show();
     });
   }
+  document.querySelectorAll('.menu-lateral a').forEach(link => {
+    link.addEventListener('click', function () {
+      const destino = this.getAttribute('href');
+      if (destino && destino.startsWith('#')) {
+        const alvo = document.querySelector(destino);
+        if (alvo) {
+          alvo.scrollIntoView({ behavior: 'smooth' });
+        }
+      }
+
+      const menuElement = document.getElementById('menuLateral');
+      const offcanvasInstance = bootstrap.Offcanvas.getInstance(menuElement);
+      if (offcanvasInstance) {
+        offcanvasInstance.hide();
+
+        // Força a remoção do backdrop caso fique preso
+        const backdrop = document.querySelector('.offcanvas-backdrop');
+        if (backdrop) {
+          backdrop.remove();
+          document.body.classList.remove('offcanvas-backdrop');
+          document.body.style.overflow = '';
+        }
+      }
+    });
+  });
 });
 
 
