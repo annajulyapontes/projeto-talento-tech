@@ -446,6 +446,14 @@ document.querySelectorAll('.menu-lateral a').forEach(link => {
         // Remove este listener depois de rodar
         menuElement.removeEventListener('hidden.bs.offcanvas', handler);
 
+        // ✅ Remove backdrop manualmente
+        const backdrop = document.querySelector('.offcanvas-backdrop');
+        if (backdrop) {
+          backdrop.remove();
+        }
+        document.body.classList.remove('offcanvas-backdrop', 'modal-open');
+        document.body.style.overflow = '';
+
         if (destino && destino.startsWith('#')) {
           const alvo = document.querySelector(destino);
           if (alvo) {
@@ -468,6 +476,7 @@ document.querySelectorAll('.menu-lateral a').forEach(link => {
     }
   });
 });
+
 
 });
 
