@@ -524,6 +524,30 @@ body.offcanvas-backdrop {
   font-weight: bold;
 }
 
+/* Correção visual dos botões de navegação do carrossel */
+.promocoes-navegacao {
+  position: relative;
+}
+
+.btn-navegacao-promo {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 10;
+  background-color: #fff8eb;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  padding: 6px 10px;
+  box-shadow: 0 0 6px rgba(0,0,0,0.1);
+}
+
+#btnPrevPromo {
+  left: 0;
+}
+
+#btnNextPromo {
+  right: 0;
+}
 
 @media (max-width: 768px) {
   #menuLateral {
@@ -548,33 +572,13 @@ body.offcanvas-backdrop {
     max-width: 100%;
     word-break: break-word; 
   }
- #promocoesWrapper {
-    padding: 0;
-    overflow-x: hidden;
-  }
-
-  #promocoesDoDia {
-    display: flex;
-    flex-wrap: nowrap;
-    transition: transform 0.3s ease;
-    gap: 0;
-    justify-content: center;
+   #promocoesDoDia {
+    padding: 0 0.3rem; /* menos espaço nas bordas no celular */
   }
 
   #promocoesDoDia .card {
-    flex: 0 0 auto;
-    width: 92vw;
-    max-width: 92vw;
+    width: calc(90vw - 1rem); /* ocupa quase toda a largura da tela */
     margin: 0 auto;
-    border-radius: 12px;
-    padding: 12px;
-  }
-
-  #promocoesDoDia .card img {
-    width: 100%;
-    height: auto;
-    object-fit: cover;
-    border-radius: 12px;
   }
 }
 
