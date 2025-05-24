@@ -292,7 +292,13 @@ async function finalizarCompraWhatsapp() {
     atualizarCarrinho();
 
     // 🔄 Abre o WhatsApp
+   // 🔄 Abre o WhatsApp (forçando o app em mobile)
+if (/Android|iPhone|iPad|iPod/i.test(navigator.userAgent)) {
+    window.location.href = `https://api.whatsapp.com/send?phone=5543998100215&text=${encodeURIComponent(mensagem)}`;
+} else {
     window.open(url, '_blank');
+}
+
 
   } catch (error) {
     console.error("Erro ao salvar o pedido:", error);
