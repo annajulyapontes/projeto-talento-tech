@@ -340,21 +340,21 @@ function renderizarPromocoesAleatorias() {
 
   // Scroll limitado horizontal
   let scrollX = 0;
-const scrollStep = window.innerWidth < 768 ? window.innerWidth : 300;
+  const scrollStep = 270;
+  const container = document.getElementById('promocoesDoDia');
+  const wrapper = document.getElementById('promocoesWrapper');
 
-const container = document.getElementById('promocoesDoDia');
-const wrapper = document.getElementById('promocoesWrapper');
+  document.getElementById('btnNextPromo').addEventListener('click', () => {
+    const maxScroll = container.scrollWidth - wrapper.clientWidth;
+    scrollX = Math.max(scrollX - scrollStep, -maxScroll);
+    container.style.transform = `translateX(${scrollX}px)`;
+  });
 
-document.getElementById('btnNextPromo').addEventListener('click', () => {
-  const maxScroll = container.scrollWidth - wrapper.clientWidth;
-  scrollX = Math.max(scrollX - scrollStep, -maxScroll);
-  container.style.transform = `translateX(${scrollX}px)`;
-});
-
-document.getElementById('btnPrevPromo').addEventListener('click', () => {
-  scrollX = Math.min(scrollX + scrollStep, 0);
-  container.style.transform = `translateX(${scrollX}px)`;
-});
+  document.getElementById('btnPrevPromo').addEventListener('click', () => {
+    scrollX = Math.min(scrollX + scrollStep, 0);
+    container.style.transform = `translateX(${scrollX}px)`;
+  });
+}
 
  renderizarProdutos();
  renderizarPromocoesAleatorias();
