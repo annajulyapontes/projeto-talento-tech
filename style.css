@@ -548,13 +548,33 @@ body.offcanvas-backdrop {
     max-width: 100%;
     word-break: break-word; 
   }
-   #promocoesDoDia {
-    padding: 0 0.5rem; /* menos espaço nas bordas no celular */
+ #promocoesWrapper {
+    padding: 0;
+    overflow-x: hidden;
+  }
+
+  #promocoesDoDia {
+    display: flex;
+    flex-wrap: nowrap;
+    transition: transform 0.3s ease;
+    gap: 0;
+    justify-content: center;
   }
 
   #promocoesDoDia .card {
-    width: calc(90vw - 1rem); /* ocupa quase toda a largura da tela */
+    flex: 0 0 auto;
+    width: 92vw;
+    max-width: 92vw;
     margin: 0 auto;
+    border-radius: 12px;
+    padding: 12px;
+  }
+
+  #promocoesDoDia .card img {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+    border-radius: 12px;
   }
 }
 
