@@ -40,23 +40,17 @@ const produtos = [
   { nome: 'Bolo de Cenoura com cobertura de chocolate', preco: 35, categoria: 'artesanais', imagem: 'img/bolo de cenoura com cobertura de chocolate.jpg', unidade: 'un' },
   { nome: 'Bolo de Limão', preco: 35, categoria: 'artesanais', imagem: 'img/bolo de limão.jpg', unidade: 'un' },
   { nome: 'Bolo de Laranja com Coco', preco: 35, categoria: 'artesanais', imagem: 'img/bolo.jpg', unidade: 'un' },
-
-  { nome: 'Brigadeiro Cremoso', preco: 5.98, categoria: 'artesanais', imagem: 'img/brigadeiro cremoso.jpg', unidade: 'un' },
-  { nome: 'Pé de Moça Cremoso', preco: 5.98, categoria: 'artesanais', imagem: 'img/pé de moça cremoso.jpg', unidade: 'un' },
-
+  { nome: 'Brigadeiro Cremoso', preco: 40, categoria: 'artesanais', imagem: 'img/brigadeiro cremoso.jpg', unidade: 'un' },
+  { nome: 'Pé de Moça Cremoso', preco: 40, categoria: 'artesanais', imagem: 'img/pé de moça cremoso.jpg', unidade: 'un' },
   { nome: 'Doce de Abóbora', preco: 5.98, categoria: 'artesanais', imagem: 'img/doce de abobora.jpg', unidade: '200g' },
-
-  { nome: 'Uva', preco: 5.98, categoria: 'frutas', imagem: 'img/uva.jpg', unidade: 'kg' },
-  { nome: 'Morango', preco: 5.98, categoria: 'frutas', imagem: 'img/morango.jpg', unidade: 'kg' },
-  { nome: 'Pera', preco: 5.98, categoria: 'frutas', imagem: 'img/pera.jpg', unidade: 'kg' },
-  { nome: 'Quiabo', preco: 5.98, categoria: 'verduras', imagem: 'img/quiabo.jpg', unidade: 'kg' },
-
+  { nome: 'Uva', preco: 12.98, categoria: 'frutas', imagem: 'img/uva.jpg', unidade: 'kg' },
+  { nome: 'Morango', preco: 38.98, categoria: 'frutas', imagem: 'img/morango.jpg', unidade: 'kg' },
+  { nome: 'Pera', preco: 8.98, categoria: 'frutas', imagem: 'img/pera.jpg', unidade: 'kg' },
+  { nome: 'Quiabo', preco: 10.08, categoria: 'verduras', imagem: 'img/quiabo.jpg', unidade: 'kg' },
   { nome: 'Melancia Inteira', preco: 2.98, categoria: 'frutas', imagem: 'img/melancia inteira.jpg', unidade: 'kg' },
   { nome: '1/4 da Melancia', preco: 2.98, categoria: 'frutas', imagem: 'img/melancia 1 parte.jpg', unidade: 'kg' },
-
-  { nome: 'Berinjela', preco: 4.00, categoria: 'verduras', imagem: 'img/berinjela.jpg', unidade: 'kg' },
-  { nome: 'Coco', preco: 4.00, categoria: 'frutas', imagem: 'img/coco.jpg', unidade: 'kg' },
-
+  { nome: 'Berinjela', preco: 10.98, categoria: 'verduras', imagem: 'img/berinjela.jpg', unidade: 'kg' },
+  { nome: 'Coco', preco: 5.98, categoria: 'frutas', imagem: 'img/coco.jpg', unidade: 'kg' },
   { nome: 'Abobrinha', preco: 7.98, categoria: 'verduras', imagem: 'img/abobrinha.jpg', unidade: 'kg' },
   { nome: 'Alho', preco: 36.98, categoria: 'verduras', imagem: 'img/alho.jpg', unidade: 'kg' },
   { nome: 'Banana', preco: 5.98, categoria: 'frutas', imagem: 'img/banana.jpg', unidade: 'kg' },
@@ -64,9 +58,13 @@ const produtos = [
 
 let carrinho = [];
 
-function renderizarProdutos() {
+function renderizarProdutos() { 
   console.log("Função renderizarProdutos chamada");
+  
   produtos.forEach((p, index) => {
+    // ⚠️ PULA produtos marcados como promoção
+    if (p.emPromocao) return;
+
     const categoriaDiv = document.getElementById(p.categoria);
     if (!categoriaDiv) return;
 
@@ -90,6 +88,7 @@ function renderizarProdutos() {
       </div>`;
   });
 }
+
 
 function alterarQuantidade(index, delta) {
   const input = document.getElementById(`qtd-${index}`);
@@ -132,35 +131,46 @@ function atualizarCarrinho() {
   const div = document.getElementById('listaCarrinho');
   div.innerHTML = '';
   let total = 0;
- let totalItens = 0;
+  let totalItens = 0;
 
-carrinho.forEach((item, index) => {
-  const subtotal = item.preco * item.quantidade;
-  total += subtotal;
-  totalItens += item.quantidade;
+  if (carrinho.length === 0) {
+    div.innerHTML = `
+      <div style="text-align: center; padding: 40px;">
+        <i class="bi bi-emoji-frown" style="font-size: 60px; color: #1D2D44; margin-bottom: 10px;"></i>
+        <div style="font-size: 1.2rem; font-weight: bold; color: #1D2D44;">Seu carrinho está vazio</div>
+        <div style="font-size: 0.9rem; color: #555;">Adicione produtos para começar sua compra!</div>
+      </div>
+    `;
+  } else {
+    carrinho.forEach((item, index) => {
+      const subtotal = item.preco * item.quantidade;
+      total += subtotal;
+      totalItens += item.quantidade;
 
-    div.innerHTML += `
-      <div class="item-carrinho">
-        <button class="remove-btn" onclick="removerItemCarrinho(${index})">&times;</button>
-        <img src="${item.imagem || 'https://via.placeholder.com/60'}" alt="${item.nome}">
-        
-        <div class="item-carrinho-conteudo">
-          <div class="item-carrinho-info">
-            <h6>${item.nome}</h6>
-            <p>${item.quantidade} ${item.unidade} x R$ ${item.preco.toFixed(2)}</p>
-          </div>
-          <div class="item-carrinho-controls">
-            <button onclick="alterarQuantidadeCarrinho(${index}, -1)">−</button>
-            <span>${item.quantidade}</span>
-            <button onclick="alterarQuantidadeCarrinho(${index}, 1)">+</button>
+      div.innerHTML += `
+        <div class="item-carrinho">
+          <button class="remove-btn" onclick="removerItemCarrinho(${index})">&times;</button>
+          <img src="${item.imagem || 'https://via.placeholder.com/60'}" alt="${item.nome}">
+          
+          <div class="item-carrinho-conteudo">
+            <div class="item-carrinho-info">
+              <h6>${item.nome}</h6>
+              <p>${item.quantidade} ${item.unidade} x R$ ${item.preco.toFixed(2)}</p>
+            </div>
+            <div class="item-carrinho-controls">
+              <button onclick="alterarQuantidadeCarrinho(${index}, -1)">−</button>
+              <span>${item.quantidade}</span>
+              <button onclick="alterarQuantidadeCarrinho(${index}, 1)">+</button>
+            </div>
           </div>
         </div>
-      </div>`;
-  });
+      `;
+    });
+  }
 
   document.getElementById('valorTotal').innerText = `R$ ${total.toFixed(2)}`;
 
-  // Atualiza contador visual
+  // Atualiza contador visual no ícone do carrinho
   const contador = document.getElementById('contadorCarrinho');
   contador.innerText = totalItens;
   contador.style.display = totalItens > 0 ? 'inline-block' : 'none';
@@ -186,6 +196,11 @@ async function finalizarCompraSite() {
     setTimeout(() => {
     window.location.href = "login.html";
   }, 2500);
+    return;
+  }
+  // ✅ INSIRA ESTA VERIFICAÇÃO LOGO AQUI:
+  if (carrinho.length === 0) {
+    mostrarToastPixLike("Seu carrinho está vazio. Adicione algum produto antes de finalizar a compra!", "#3E5C76");
     return;
   }
 
@@ -222,6 +237,11 @@ async function finalizarCompraWhatsapp() {
      setTimeout(() => {
     window.location.href = "login.html";
   }, 2500);
+    return;
+  }
+  // ✅ BARRAR CARRINHO VAZIO:
+  if (carrinho.length === 0) {
+    mostrarToastPixLike("Seu carrinho está vazio. Adicione algum produto antes de finalizar a compra!", "#D9534F");
     return;
   }
 
@@ -319,23 +339,25 @@ function renderizarPromocoesAleatorias() {
   const promocoes = embaralhados.slice(0, 8);
 
   promocoes.forEach((p) => {
-    const precoPromocional = Math.max(p.preco - 2.00, 0.01);
+    const precoPromocional = Math.max(p.preco - 3.50, 0.01);
     const index = produtos.indexOf(p);
 
     div.innerHTML += `
-      <div class="card">
-        <img src="${p.imagem}" class="card-img-top produto-img" alt="${p.nome}">
-        <div class="card-body">
-          <h5 class="card-title">${p.nome}</h5>
-          <p class="card-text preco-promocao">R$ ${precoPromocional.toFixed(2)} <span class="unidade">${p.unidade}</span></p>
-          <div class="input-group mb-2">
-            <button class="btn btn-outline-secondary" onclick="alterarQuantidadePromo(${index}, -1)">-</button>
-            <input type="number" id="qtd-promo-${index}" class="form-control text-center" value="1" min="1">
-            <button class="btn btn-outline-secondary" onclick="alterarQuantidadePromo(${index}, 1)">+</button>
-          </div>
-          <button class="btn btn-primary w-100" onclick="adicionarCarrinhoPromo(${index}, ${precoPromocional})">Adicionar ao Carrinho</button>
-        </div>
-      </div>`;
+  <div class="card">
+    <div class="badge-promocao">Promoção</div>
+    <img src="${p.imagem}" class="card-img-top produto-img" alt="${p.nome}">
+    <div class="card-body">
+      <h5 class="card-title">${p.nome}</h5>
+      <p class="card-text preco-promocao">R$ ${precoPromocional.toFixed(2)} <span class="unidade">${p.unidade}</span></p>
+      <div class="input-group mb-2">
+        <button class="btn btn-outline-secondary" onclick="alterarQuantidadePromo(${index}, -1)">-</button>
+        <input type="number" id="qtd-promo-${index}" class="form-control text-center" value="1" min="1">
+        <button class="btn btn-outline-secondary" onclick="alterarQuantidadePromo(${index}, 1)">+</button>
+      </div>
+      <button class="btn btn-primary w-100" onclick="adicionarCarrinhoPromo(${index}, ${precoPromocional})">Adicionar ao Carrinho</button>
+    </div>
+  </div>`;
+
   });
 
   // Scroll limitado horizontal
@@ -354,10 +376,17 @@ function renderizarPromocoesAleatorias() {
     scrollX = Math.min(scrollX + scrollStep, 0);
     container.style.transform = `translateX(${scrollX}px)`;
   });
+
+  promocoes.forEach((p) => {
+  p.emPromocao = true;
+});
+
 }
 
- renderizarProdutos();
- renderizarPromocoesAleatorias();
+ atualizarCarrinho();
+ renderizarPromocoesAleatorias(); // primeiro, define os emPromocao = true
+ renderizarProdutos();            // depois, gera só os que NÃO estão em promoção
+
 
 
   // Categorias
@@ -469,16 +498,14 @@ window.copiarCodigoPix = function () {
   const textarea = document.getElementById("codigoPix");
   navigator.clipboard.writeText(textarea.value)
     .then(() => {
-      const toast = document.getElementById("toastPix");
-      toast.style.display = "block";
-      setTimeout(() => {
-        toast.style.display = "none";
-      }, 2500); // duração do toast
+      mostrarToastPixLike("Código Pix copiado! Após a confirmação do pagamento, seu pedido será preparado.", "#1D2D44");
     })
     .catch(err => {
       console.error("Erro ao copiar:", err);
+      mostrarToastPixLike("Erro ao copiar o código Pix.", "#d9534f");
     });
-}
+};
+
 
 export function mostrarToastPixLike(mensagem = "Algo aconteceu!", cor = "#0d6efd") {
   // Remove se já existir para não duplicar
