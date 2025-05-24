@@ -502,11 +502,13 @@ body.offcanvas-backdrop {
   flex-wrap: nowrap;
   transition: transform 0.3s ease;
   gap: 1rem;
+  padding: 0 1rem;
 }
 
 #promocoesDoDia .card {
   flex: 0 0 auto;
   width: 300px;
+  max-width: 100%;
 }
 
 .scroll-container {
@@ -547,8 +549,12 @@ body.offcanvas-backdrop {
     max-width: 100%;
     word-break: break-word; 
   }
-   #promocoesDoDia .card {
-    width: 90vw; /* ocupa 90% da largura visível */
+   #promocoesDoDia {
+    padding: 0 0.5rem; /* menos espaço nas bordas no celular */
+  }
+
+  #promocoesDoDia .card {
+    width: calc(100vw - 2rem); /* ocupa quase toda a largura da tela */
     margin: 0 auto;
   }
 }
