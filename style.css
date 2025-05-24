@@ -493,12 +493,22 @@ body.offcanvas-backdrop {
   flex-shrink: 0;
 }
 #promocoesWrapper {
-  max-width: 90vw;
   overflow: hidden;
+  width: 100%;
 }
+
 #promocoesDoDia {
-  transition: transform 0.3s ease-in-out;
+  display: flex;
+  flex-wrap: nowrap;
+  transition: transform 0.3s ease;
+  gap: 1rem;
 }
+
+#promocoesDoDia .card {
+  flex: 0 0 auto;
+  width: 300px;
+}
+
 .scroll-container {
   scroll-snap-type: x mandatory;
   -webkit-overflow-scrolling: touch;
@@ -537,30 +547,9 @@ body.offcanvas-backdrop {
     max-width: 100%;
     word-break: break-word; 
   }
-   #promocoesWrapper {
-    padding: 0 1rem;
-    overflow: hidden;
-  }
-
-  #promocoesDoDia {
-    display: flex;
-    flex-wrap: nowrap;
-    transition: transform 0.3s ease;
-    gap: 16px;
-  }
-
-  #promocoesDoDia .card {
-    min-width: 100%;
-    max-width: 100%;
+   #promocoesDoDia .card {
+    width: 90vw; /* ocupa 90% da largura visível */
     margin: 0 auto;
-  }
-
-  .secao-produtos .btn-outline-secondary {
-    padding: 6px 10px;
-  }
-
-  .input-group .form-control {
-    font-size: 1rem;
   }
 }
 
