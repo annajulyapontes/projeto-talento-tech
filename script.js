@@ -431,33 +431,40 @@ function renderizarPromocoesAleatorias() {
       menu.show();
     });
   }
-  document.querySelectorAll('.menu-lateral a').forEach(link => {
+document.querySelectorAll('.menu-lateral a').forEach(link => {
   link.addEventListener('click', function (e) {
     const destino = this.getAttribute('href');
 
-    if (destino && destino.startsWith('#')) {
-      const alvo = document.querySelector(destino);
-      if (alvo) {
-        alvo.scrollIntoView({ behavior: 'smooth' });
-      }
-    } else if (destino) {
-      window.location.href = destino;  // redireciona para páginas externas
-    }
-
+    // Fecha o menu antes de qualquer ação
     const menuElement = document.getElementById('menuLateral');
     const offcanvasInstance = bootstrap.Offcanvas.getInstance(menuElement);
     if (offcanvasInstance) {
       offcanvasInstance.hide();
+    }
 
+    // Pequeno delay para garantir que o backdrop feche corretamente
+    setTimeout(() => {
       const backdrop = document.querySelector('.offcanvas-backdrop');
       if (backdrop) {
         backdrop.remove();
         document.body.classList.remove('offcanvas-backdrop');
         document.body.style.overflow = '';
       }
-    }
+
+      if (destino && destino.startsWith('#')) {
+        // Scroll local
+        const alvo = document.querySelector(destino);
+        if (alvo) {
+          alvo.scrollIntoView({ behavior: 'smooth' });
+        }
+      } else if (destino) {
+        // Redirecionamento externo
+        window.location.href = destino;
+      }
+    }, 200);
   });
 });
+;
 
 });
 
