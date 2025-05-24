@@ -537,5 +537,30 @@ body.offcanvas-backdrop {
     max-width: 100%;
     word-break: break-word; 
   }
+   #promocoesWrapper {
+    padding: 0 1rem;
+    overflow: hidden;
+  }
+
+  #promocoesDoDia {
+    display: flex;
+    flex-wrap: nowrap;
+    transition: transform 0.3s ease;
+    gap: 16px;
+  }
+
+  #promocoesDoDia .card {
+    min-width: 100%;
+    max-width: 100%;
+    margin: 0 auto;
+  }
+
+  .secao-produtos .btn-outline-secondary {
+    padding: 6px 10px;
+  }
+
+  .input-group .form-control {
+    font-size: 1rem;
+  }
 }
 
