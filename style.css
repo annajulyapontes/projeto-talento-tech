@@ -457,21 +457,6 @@ body {
   100% { opacity: 0; transform: translate(-50%, -40%); }
 }
 
-@media (max-width: 768px) {
-  .barra-categorias .container {
-    flex-direction: column;
-    align-items: center;
-    gap: 5px;
-  }
-
-  .categoria-link {
-    display: inline-block;
-    text-align: center;
-    white-space: normal;
-    max-width: 100%;
-    word-break: break-word; 
-  }
-}
 .offcanvas-backdrop {
   transition: opacity 0.2s ease-in-out;
   z-index: 1040 !important;
@@ -492,6 +477,42 @@ body.offcanvas-backdrop {
 .email-pequeno {
   font-size: 0.55rem;
 }
+.secao-promocoes h3 {
+  font-family: 'Quicksand', sans-serif;
+  font-weight: bold;
+  color: #1D2D44;
+}
+
+#carouselPromocoes {
+  scroll-snap-type: x mandatory;
+}
+
+#carouselPromocoes > div {
+  min-width: 250px;
+  scroll-snap-align: start;
+  flex-shrink: 0;
+}
+#promocoesWrapper {
+  max-width: 90vw;
+  overflow: hidden;
+}
+#promocoesDoDia {
+  transition: transform 0.3s ease-in-out;
+}
+.scroll-container {
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+}
+.scroll-container .card {
+  min-width: 250px;
+  flex: 0 0 auto;
+  scroll-snap-align: start;
+}
+.preco-promocao {
+  color: red;
+  font-weight: bold;
+}
+
 
 @media (max-width: 768px) {
   #menuLateral {
@@ -503,6 +524,18 @@ body.offcanvas-backdrop {
   }
    .email-pequeno {
     font-size: 0.7rem;
+  }
+  .barra-categorias .container {
+    flex-direction: column;
+    align-items: center;
+    gap: 5px;
+  }
+  .categoria-link {
+    display: inline-block;
+    text-align: center;
+    white-space: normal;
+    max-width: 100%;
+    word-break: break-word; 
   }
 }
 

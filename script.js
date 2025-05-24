@@ -132,12 +132,12 @@ function atualizarCarrinho() {
   const div = document.getElementById('listaCarrinho');
   div.innerHTML = '';
   let total = 0;
-  let totalItens = carrinho.length;
+ let totalItens = 0;
 
-  carrinho.forEach((item, index) => {
-    const subtotal = item.preco * item.quantidade;
-    total += subtotal;
-    totalItens += item.quantidade;
+carrinho.forEach((item, index) => {
+  const subtotal = item.preco * item.quantidade;
+  total += subtotal;
+  totalItens += item.quantidade;
 
     div.innerHTML += `
       <div class="item-carrinho">
@@ -288,13 +288,77 @@ function alternarCarrinho() {
 
 document.addEventListener('DOMContentLoaded', function () {
   const btnLogin = document.getElementById('btnLogin');
-if (btnLogin) {
-  btnLogin.addEventListener('click', () => {
-    window.location.href = 'login.html';
+  if (btnLogin) {
+    btnLogin.addEventListener('click', () => {
+      window.location.href = 'login.html';
+    });
+  }
+  
+function renderizarPromocoesAleatorias() {
+  const div = document.getElementById('promocoesDoDia');
+  if (!div) return;
+
+  // Geração de seed fixa com base na data (ano + mês + dia)
+  const hoje = new Date();
+  const seed = hoje.getFullYear() * 10000 + (hoje.getMonth() + 1) * 100 + hoje.getDate();
+
+  function seededShuffle(array, seed) {
+    let arr = array.slice();
+    let random = () => {
+      const x = Math.sin(seed++) * 10000;
+      return x - Math.floor(x);
+    };
+    for (let i = arr.length - 1; i > 0; i--) {
+      const j = Math.floor(random() * (i + 1));
+      [arr[i], arr[j]] = [arr[j], arr[i]];
+    }
+    return arr;
+  }
+
+  const embaralhados = seededShuffle(produtos, seed);
+  const promocoes = embaralhados.slice(0, 8);
+
+  promocoes.forEach((p) => {
+    const precoPromocional = Math.max(p.preco - 2.00, 0.01);
+    const index = produtos.indexOf(p);
+
+    div.innerHTML += `
+      <div class="card">
+        <img src="${p.imagem}" class="card-img-top produto-img" alt="${p.nome}">
+        <div class="card-body">
+          <h5 class="card-title">${p.nome}</h5>
+          <p class="card-text preco-promocao">R$ ${precoPromocional.toFixed(2)} <span class="unidade">${p.unidade}</span></p>
+          <div class="input-group mb-2">
+            <button class="btn btn-outline-secondary" onclick="alterarQuantidadePromo(${index}, -1)">-</button>
+            <input type="number" id="qtd-promo-${index}" class="form-control text-center" value="1" min="1">
+            <button class="btn btn-outline-secondary" onclick="alterarQuantidadePromo(${index}, 1)">+</button>
+          </div>
+          <button class="btn btn-primary w-100" onclick="adicionarCarrinhoPromo(${index}, ${precoPromocional})">Adicionar ao Carrinho</button>
+        </div>
+      </div>`;
+  });
+
+  // Scroll limitado horizontal
+  let scrollX = 0;
+  const scrollStep = 270;
+  const container = document.getElementById('promocoesDoDia');
+  const wrapper = document.getElementById('promocoesWrapper');
+
+  document.getElementById('btnNextPromo').addEventListener('click', () => {
+    const maxScroll = container.scrollWidth - wrapper.clientWidth;
+    scrollX = Math.max(scrollX - scrollStep, -maxScroll);
+    container.style.transform = `translateX(${scrollX}px)`;
+  });
+
+  document.getElementById('btnPrevPromo').addEventListener('click', () => {
+    scrollX = Math.min(scrollX + scrollStep, 0);
+    container.style.transform = `translateX(${scrollX}px)`;
   });
 }
 
-  renderizarProdutos();
+ renderizarProdutos();
+ renderizarPromocoesAleatorias();
+
 
   // Categorias
   document.querySelectorAll('.categoria-link').forEach(link => {
@@ -339,6 +403,42 @@ if (btnLogin) {
     });
   }
 });
+
+
+function alterarQuantidadePromo(index, delta) {
+  const input = document.getElementById(`qtd-promo-${index}`);
+  let valor = parseInt(input.value);
+  valor = isNaN(valor) ? 1 : valor + delta;
+  input.value = Math.max(1, valor);
+}
+
+function adicionarCarrinhoPromo(index, precoPromocional) {
+  const input = document.getElementById(`qtd-promo-${index}`);
+  const qtd = parseInt(input.value) || 1;
+  const item = produtos[index];
+  const existente = carrinho.find(p => p.nome === item.nome);
+
+  if (existente) {
+    existente.quantidade += qtd;
+  } else {
+    carrinho.push({
+      nome: item.nome,
+      preco: precoPromocional,
+      imagem: item.imagem,
+      unidade: item.unidade,
+      quantidade: qtd
+    });
+  }
+
+  atualizarCarrinho();
+
+  const icone = document.getElementById('btnCarrinho');
+  if (icone) {
+    icone.classList.add('animado');
+    setTimeout(() => icone.classList.remove('animado'), 400);
+  }
+}
+
 document.addEventListener('hidden.bs.offcanvas', () => {
   document.body.style.overflow = '';
 });
@@ -424,3 +524,5 @@ window.removerItemCarrinho = removerItemCarrinho;
 window.finalizarCompraSite = finalizarCompraSite;
 window.alternarCarrinho = alternarCarrinho;
 window.finalizarCompraWhatsapp = finalizarCompraWhatsapp;
+window.adicionarCarrinhoPromo = adicionarCarrinhoPromo;
+window.alterarQuantidadePromo = alterarQuantidadePromo;
