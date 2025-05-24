@@ -435,36 +435,39 @@ document.querySelectorAll('.menu-lateral a').forEach(link => {
   link.addEventListener('click', function (e) {
     const destino = this.getAttribute('href');
 
-    // Fecha o menu antes de qualquer ação
     const menuElement = document.getElementById('menuLateral');
     const offcanvasInstance = bootstrap.Offcanvas.getInstance(menuElement);
+
     if (offcanvasInstance) {
       offcanvasInstance.hide();
-    }
 
-    // Pequeno delay para garantir que o backdrop feche corretamente
-    setTimeout(() => {
-      const backdrop = document.querySelector('.offcanvas-backdrop');
-      if (backdrop) {
-        backdrop.remove();
-        document.body.classList.remove('offcanvas-backdrop');
-        document.body.style.overflow = '';
-      }
+      // Aguarda o evento de fechamento completo
+      menuElement.addEventListener('hidden.bs.offcanvas', function handler() {
+        // Remove este listener depois de rodar
+        menuElement.removeEventListener('hidden.bs.offcanvas', handler);
 
+        if (destino && destino.startsWith('#')) {
+          const alvo = document.querySelector(destino);
+          if (alvo) {
+            alvo.scrollIntoView({ behavior: 'smooth' });
+          }
+        } else if (destino) {
+          window.location.href = destino;
+        }
+      });
+    } else {
+      // Caso não esteja no offcanvas, redireciona direto
       if (destino && destino.startsWith('#')) {
-        // Scroll local
         const alvo = document.querySelector(destino);
         if (alvo) {
           alvo.scrollIntoView({ behavior: 'smooth' });
         }
       } else if (destino) {
-        // Redirecionamento externo
         window.location.href = destino;
       }
-    }, 200);
+    }
   });
 });
-;
 
 });
 
