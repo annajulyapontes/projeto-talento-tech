@@ -1,4 +1,4 @@
-### 🛒 Armazém da Dona Sítio
+### 🛒 Armazém do Sítio
 Este projeto integrador do Talento Tech foi desenvolvido para resolver os desafios enfrentados pela Dona Lourdes ao vender seus produtos artesanais e da horta. O site permite gerenciar produtos, facilitar pedidos e oferecer uma experiência prática para os clientes realizarem compras online.
 
 ### 📋 Funcionalidades
