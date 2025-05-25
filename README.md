@@ -12,7 +12,7 @@ Este projeto integrador do Talento Tech foi desenvolvido para resolver os desafi
 * Layout responsivo, adaptado para celulares e computadores
 
 ### 👥 Equipe
-Anna Julya Pontes 
-Eloisa Amorim 
-Eduarda Motta
+* Anna Julya Pontes 
+* Eloisa Amorim 
+* Eduarda Motta
 
