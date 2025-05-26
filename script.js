@@ -531,23 +531,25 @@ document.addEventListener('DOMContentLoaded', function () {
   const btnLogin = document.getElementById('btnLogin');
   const pedidosLink = document.querySelector('a[href*="pedidos"]');
 
+  // Só define o comportamento do botão "Pedidos"
   onAuthStateChanged(auth, (user) => {
-    if (user) {
-      if (btnLogin) {
-        btnLogin.innerHTML = `<i class="bi bi-person-circle me-1"></i> <span class="email-pequeno">${user.email}</span>`;
-      }
-      if (pedidosLink) {
-        pedidosLink.addEventListener('click', (e) => {
-          e.preventDefault();
+    if (pedidosLink) {
+      pedidosLink.addEventListener('click', (e) => {
+        e.preventDefault();
+        if (user) {
           window.location.href = "pedidos.html";
-        });
-      }
-    } else {
-      if (pedidosLink) {
-        pedidosLink.addEventListener('click', (e) => {
-          e.preventDefault();
+        } else {
           window.location.href = "login.html?redirect=pedidos";
-        });
+        }
+      });
+    }
+
+    // Atualiza botão de login visualmente
+    if (btnLogin) {
+      if (user) {
+        btnLogin.innerHTML = `<i class="bi bi-person-circle me-1"></i> <span class="email-pequeno">${user.email}</span>`;
+      } else {
+        btnLogin.innerHTML = `<i class="bi bi-person-circle"></i>`;
       }
     }
   });
