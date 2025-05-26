@@ -527,27 +527,38 @@ document.addEventListener('hidden.bs.offcanvas', () => {
 
 import { onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.11.0/firebase-auth.js";
 
-onAuthStateChanged(auth, (user) => {
+document.addEventListener('DOMContentLoaded', function () {
   const btnLogin = document.getElementById('btnLogin');
-  const btnPedidos = document.querySelector('a[href^="login.html"], a[href^="pedidos.html"]');
+  const pedidosLink = document.querySelector('a[href*="pedidos"]');
 
-  if (user) {
-    if (btnLogin) {
-      btnLogin.innerHTML = `<i class="bi bi-person-circle me-1"></i> <span class="email-pequeno">${user.email}</span>`;
+  onAuthStateChanged(auth, (user) => {
+    if (user) {
+      if (btnLogin) {
+        btnLogin.innerHTML = `<i class="bi bi-person-circle me-1"></i> <span class="email-pequeno">${user.email}</span>`;
+      }
+      if (pedidosLink) {
+        pedidosLink.href = "pedidos.html";
+      }
+    } else {
+      if (pedidosLink) {
+        pedidosLink.href = "login.html?redirect=pedidos";
+      }
     }
-    if (btnPedidos) {
-      btnPedidos.href = "pedidos.html";
-    }
-  } else {
-    if (btnPedidos) {
-      btnPedidos.href = "login.html";
-    }
-    if (window.location.pathname.includes("pedidos.html")) {
-      window.location.href = "login.html";
-    }
+  });
+
+  if (btnLogin) {
+    btnLogin.addEventListener('click', () => {
+      window.location.href = 'login.html';
+    });
   }
 });
 
+// Corrigir comportamento do botão voltar (remover redirecionamento infinito)
+window.addEventListener("popstate", function (event) {
+  if (window.location.pathname.includes("pedidos.html") && !auth.currentUser) {
+    window.location.href = "index.html";
+  }
+});
 
 
 window.copiarCodigoPix = function () {
