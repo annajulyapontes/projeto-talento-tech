@@ -540,12 +540,13 @@ onAuthStateChanged(auth, (user) => {
       btnPedidos.href = "pedidos.html"; // redireciona corretamente
     }
   } else {
-    // Redireciona para login se estiver na pedidos.html
+    // 🚨 Só redireciona SE estiver na página pedidos.html
     if (window.location.pathname.includes("pedidos.html")) {
       window.location.href = "login.html";
     }
   }
 });
+
 
 window.copiarCodigoPix = function () {
   const textarea = document.getElementById("codigoPix");
