@@ -531,8 +531,17 @@ document.addEventListener('DOMContentLoaded', function () {
   const btnLogin = document.getElementById('btnLogin');
   const pedidosLink = document.querySelector('a[href*="pedidos"]');
 
-  // Só define o comportamento do botão "Pedidos"
+  // Atualiza visual do botão Login
   onAuthStateChanged(auth, (user) => {
+    if (btnLogin) {
+      if (user) {
+        btnLogin.innerHTML = `<i class="bi bi-person-circle me-1"></i> <span class="email-pequeno">${user.email}</span>`;
+      } else {
+        btnLogin.innerHTML = `<i class="bi bi-person-circle"></i>`;
+      }
+    }
+
+    // Configura clique no botão "Pedidos"
     if (pedidosLink) {
       pedidosLink.addEventListener('click', (e) => {
         e.preventDefault();
@@ -543,17 +552,9 @@ document.addEventListener('DOMContentLoaded', function () {
         }
       });
     }
-
-    // Atualiza botão de login visualmente
-    if (btnLogin) {
-      if (user) {
-        btnLogin.innerHTML = `<i class="bi bi-person-circle me-1"></i> <span class="email-pequeno">${user.email}</span>`;
-      } else {
-        btnLogin.innerHTML = `<i class="bi bi-person-circle"></i>`;
-      }
-    }
   });
 
+  // Clique no botão Login vai sempre para login.html
   if (btnLogin) {
     btnLogin.addEventListener('click', () => {
       window.location.href = 'login.html';
