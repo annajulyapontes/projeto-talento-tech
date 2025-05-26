@@ -551,14 +551,16 @@ document.addEventListener('DOMContentLoaded', function () {
       window.location.href = 'login.html';
     });
   }
+
+  // ✅ REMOVE comportamento de forçar para pedidos.html se já logado
+  // apenas respeita o clique do botão, não redireciona automaticamente
+
+  // ✅ No botão "voltar" do navegador, não forçamos pedidos.html
+  window.addEventListener('popstate', function () {
+    console.log('Popstate detectado, nenhum redirecionamento forçado.');
+  });
 });
 
-// Corrigir comportamento do botão voltar (remover redirecionamento infinito)
-window.addEventListener("popstate", function (event) {
-  if (window.location.pathname.includes("pedidos.html") && !auth.currentUser) {
-    window.location.href = "index.html";
-  }
-});
 
 
 window.copiarCodigoPix = function () {
