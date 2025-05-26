@@ -537,11 +537,17 @@ document.addEventListener('DOMContentLoaded', function () {
         btnLogin.innerHTML = `<i class="bi bi-person-circle me-1"></i> <span class="email-pequeno">${user.email}</span>`;
       }
       if (pedidosLink) {
-        pedidosLink.href = "pedidos.html";
+        pedidosLink.addEventListener('click', (e) => {
+          e.preventDefault();
+          window.location.href = "pedidos.html";
+        });
       }
     } else {
       if (pedidosLink) {
-        pedidosLink.href = "login.html?redirect=pedidos";
+        pedidosLink.addEventListener('click', (e) => {
+          e.preventDefault();
+          window.location.href = "login.html?redirect=pedidos";
+        });
       }
     }
   });
@@ -551,14 +557,6 @@ document.addEventListener('DOMContentLoaded', function () {
       window.location.href = 'login.html';
     });
   }
-
-  // ✅ REMOVE comportamento de forçar para pedidos.html se já logado
-  // apenas respeita o clique do botão, não redireciona automaticamente
-
-  // ✅ No botão "voltar" do navegador, não forçamos pedidos.html
-  window.addEventListener('popstate', function () {
-    console.log('Popstate detectado, nenhum redirecionamento forçado.');
-  });
 });
 
 
