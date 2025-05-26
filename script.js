@@ -529,23 +529,25 @@ import { onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.11.0/f
 
 onAuthStateChanged(auth, (user) => {
   const btnLogin = document.getElementById('btnLogin');
-  const btnPedidos = document.querySelector('a[href^="login.html"]');
+  const btnPedidos = document.querySelector('a[href^="login.html"], a[href^="pedidos.html"]');
 
   if (user) {
-    // Mostrar email e mudar link do botão de Pedidos
     if (btnLogin) {
       btnLogin.innerHTML = `<i class="bi bi-person-circle me-1"></i> <span class="email-pequeno">${user.email}</span>`;
     }
     if (btnPedidos) {
-      btnPedidos.href = "pedidos.html"; // redireciona corretamente
+      btnPedidos.href = "pedidos.html";
     }
   } else {
-    // 🚨 Só redireciona SE estiver na página pedidos.html
+    if (btnPedidos) {
+      btnPedidos.href = "login.html";
+    }
     if (window.location.pathname.includes("pedidos.html")) {
       window.location.href = "login.html";
     }
   }
 });
+
 
 
 window.copiarCodigoPix = function () {
